@@ -24,15 +24,13 @@ io.on('connection', function (socket) {
 	});
 });
 
-
-
 io.on('disconnect', function(){
 	connected = false;
 });
 
 function updateLoop(){
 	if(connected){
-		io.emit('hello');
+		//io.emit('hello');
 		console.log("Hello client(s)");
 		if(machineReady){
 			io.emit('bubble-request', 5);

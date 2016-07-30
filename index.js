@@ -34,9 +34,11 @@ socket.on('event', function (data) {
 
 socket.on('bubble-request', function(data){
 	if(ready){
-		socket.emit('machine-status', false);
+		ready = false;
+		socket.emit('machine-status', ready);
 		bm.emit(data, function(){
-			socket.emit('machine-status', true);
+			ready = true;
+			socket.emit('machine-status', ready);
 		});
 	}
 });

@@ -1,19 +1,22 @@
-//var gpio = require('pi-gpio');
+var gpio = null;// require('pi-gpio');
 var async = require('async');
 
 var sc1A = 1;
 var sc1B = 2;
 var sc2A = 3;
 var sc2B = 4;
+var fanPin = 5;
 
-/*
+
 function setPin(pin, val, cb){
-	gpio.open(pin, "output", function(err){
+	/*gpio.open(pin, "output", function(err){
 		gpio.write(pin, val, function(){
 			gpio.close(pin);
 		});
-	})
-} */
+	});*/
+	console.log("---- Pin " + pin + ": " + val);
+	cb();
+}
 
 /*setStep(1, 0, 1, 0)
     time.sleep(delay)
@@ -66,7 +69,20 @@ function moveStepper(steps, callback){
 
 var MachineController = {
 	emit : function(qty, callback){
-		moveStepper(qty, callback);
+		async.series([
+			function(callback){
+				setPin(fanPin, 1, callback);
+			},
+			function(callback){
+				moveStepper(qty, callback);
+			},
+			function(callback){
+				setPin(fanPin, 0, callback);
+			}], function(err, results){
+				if(err) throw err;
+				callback();
+			}
+		);
 	}
 }
 
