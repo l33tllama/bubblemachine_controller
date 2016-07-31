@@ -33,7 +33,7 @@ function setPin(pin, val, cb){
 	gpio.setup(pin, gpio.DIR_OUT, function(){
 
 		gpio.write(pin, true, function(err) {
-			console.log("---- Pin " + pin + ": " + val);
+			//console.log("---- Pin " + pin + ": " + val);
         	if (err) throw err;
 	        //console.log('Written to pin');
 			_cb();
@@ -65,7 +65,7 @@ function setStep(_1a, _1b, _2a, _2b, delay, cb){
 	console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
 	
 	var ms = delay; 
-	
+
 	async.series([
 		function(callback){
 			setTimeout(function(){
