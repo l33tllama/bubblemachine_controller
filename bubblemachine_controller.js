@@ -1,21 +1,34 @@
-var gpio = null;// require('pi-gpio');
+var gpio = require('rpi-gpio');
 var async = require('async');
 
-var sc1A = 1;
-var sc1B = 2;
-var sc2A = 3;
-var sc2B = 4;
-var fanPin = 5;
+var sc1A = 3;
+var sc1B = 5;
+var sc2A = 7;
+var sc2B = 11;
+var fanPin = 13;
+gpio.setup(sc1A, gpio.DIR_OUT);
+gpio.setup(sc1B, gpio.DIR_OUT);
+gpio.setup(sc2A, gpio.DIR_OUT);
+gpio.setup(sc2B, gpio.DIR_OUT);
+gpio.setup(fanPin, gpio.DIR_OUT);
+
 
 
 function setPin(pin, val, cb){
-	/*gpio.open(pin, "output", function(err){
+	var _cb = cb; 
+	gpio.write(pin, true, function(err) {
+        	if (err) throw err;
+		console.log("---- Pin " + pin + ": " + val);
+	        //console.log('Written to pin');
+		_cb();
+	 });
+/*
+	gpio.open(pin, "output", function(err){
 		gpio.write(pin, val, function(){
 			gpio.close(pin);
 		});
 	});*/
-	console.log("---- Pin " + pin + ": " + val);
-	cb();
+	//cb();
 }
 
 /*setStep(1, 0, 1, 0)
@@ -29,15 +42,25 @@ function setPin(pin, val, cb){
 */
 
 function setStep(_1a, _1b, _2a, _2b, delay, cb){
+	var _cb = cb;
+	
+	async.series([
+		function(cb){
+			setTimeout(function(){
+				setPin(sc1A, _1a, cb);
+			}, ms);
+		}], function(err, results){
+	});
+/*
 	setTimeout(function(){
-		//setPin(sc1A, _1a);
-		//setPin(sc1B, _1b);
-		//setPin(sc2A, _2a);
-		//setPin(sc2B, _2b);
+		setPin(sc1A, _1a);
+		setPin(sc1B, _1b);
+		setPin(sc2A, _2a);
+		setPin(sc2B, _2b);
 		
-		console.log(`step: ${_1a} ${_1b} ${_2a} ${_2b}`);
-		cb();
-	}, delay);
+		console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
+		_cb();
+	}, delay); */
 	
 }
 
