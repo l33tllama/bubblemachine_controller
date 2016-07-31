@@ -129,6 +129,11 @@ var MachineController = {
 				callback();
 			}
 		);
+	},
+	off : function(){
+		setPin(fanPin, 0, function(){
+			console.log("Fan off..");
+		});
 	}
 }
 

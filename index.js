@@ -49,6 +49,7 @@ socket.on('hello', function(){
 
 socket.on('error', function (err) {
 	console.log("Connection error: " + err);
+	bm.off();
 });
 
 socket.on('connect_timeout', function(){
@@ -57,4 +58,5 @@ socket.on('connect_timeout', function(){
 
 socket.on('reconnect_attempt', function(){
 	console.log("reconnect_attempt");
+	bm.off();
 });
