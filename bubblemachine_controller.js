@@ -9,6 +9,13 @@ var fanPin = 13;
 
 console.log("Pin setup");
 
+function closePins() {
+    gpio.destroy(function() {
+        console.log('All pins unexported');
+    });
+}
+closePins();
+
 gpio.setup(sc1A, gpio.DIR_OUT);
 gpio.setup(sc1B, gpio.DIR_OUT);
 gpio.setup(sc2A, gpio.DIR_OUT);
