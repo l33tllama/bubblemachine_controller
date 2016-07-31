@@ -29,14 +29,14 @@ gpio.setup(fanPin, gpio.DIR_OUT);
 console.log("Pin setup complete");
 
 function setPin(pin, val, cb){
-	var _cb = cb;
+	//var _cb = cb;
 	gpio.setup(pin, gpio.DIR_OUT, function(){
 
 		gpio.write(pin, val, function(err) {
 			//console.log("---- Pin " + pin + ": " + val);
         	if (err) throw err;
 	        //console.log('Written to pin');
-			_cb();
+			cb();
 	 	});
 
 	});
@@ -132,7 +132,11 @@ var MachineController = {
 	},
 	off : function(){
 		setPin(fanPin, false, function(){
-			console.log("Fan off..");
+			console.log("Fan off..?");
+			gpio.destroy(function(){
+				console.log("Everything off");
+			});
+			
 		});
 	}
 }
