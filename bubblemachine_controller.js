@@ -5,7 +5,7 @@ var sc1A = 3;
 var sc1B = 5;
 var sc2A = 7;
 var sc2B = 11;
-var fanPin = 13;
+var fanPin = 17;
 
 console.log("Pin setup");
 
