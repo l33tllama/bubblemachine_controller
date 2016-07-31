@@ -111,13 +111,25 @@ function moveStepper(steps, callback){
 		var ms = 100;
 		step_calls.push.apply(step_calls, [
 			function(callback){
-				setStep(1, 0, 1, 0, ms, callback);
+				setStep(1, 0, 0, 0, ms, callback);
+			},
+			function(callback){
+				setStep(1, 1, 0, 0, ms, callback);
+			},
+			function(callback){
+				setStep(0, 1, 0, 0, ms, callback);
 			},
 			function(callback){
 				setStep(0, 1, 1, 0, ms, callback);
 			},
 			function(callback){
-				setStep(0, 1, 0, 1, ms, callback);
+				setStep(0, 0, 1, 0, ms, callback);
+			},
+			function(callback){
+				setStep(0, 0, 1, 1, ms, callback);
+			},
+			function(callback){
+				setStep(0, 0, 0, 1, ms, callback);
 			},
 			function(callback){
 				setStep(1, 0, 0, 1, ms, callback);
