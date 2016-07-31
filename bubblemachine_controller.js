@@ -17,8 +17,8 @@ gpio.setup(fanPin, gpio.DIR_OUT);
 function setPin(pin, val, cb){
 	var _cb = cb; 
 	gpio.write(pin, true, function(err) {
+			console.log("---- Pin " + pin + ": " + val);
         	if (err) throw err;
-		console.log("---- Pin " + pin + ": " + val);
 	        //console.log('Written to pin');
 		_cb();
 	 });
