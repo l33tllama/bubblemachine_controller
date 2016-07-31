@@ -78,24 +78,13 @@ function setStep(_1a, _1b, _2a, _2b, delay, cb){
 		},
 		function(callback){
 			setPin(sc2B, _2b, callback);
-		},function(callback){
+		},	function(callback){
 			setTimeout(callback, ms);
 		}], 
 		function(err, results){
 			cb();
 		}
-	);
-/*
-	setTimeout(function(){
-		setPin(sc1A, _1a);
-		setPin(sc1B, _1b);
-		setPin(sc2A, _2a);
-		setPin(sc2B, _2b);
-		
-		console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
-		_cb();
-	}, delay); */
-	
+	);	
 }
 
 function moveStepper(steps, callback){
