@@ -20,8 +20,11 @@ gpio.setup(sc1A, gpio.DIR_OUT);
 gpio.setup(sc1B, gpio.DIR_OUT);
 gpio.setup(sc2A, gpio.DIR_OUT);
 gpio.setup(sc2B, gpio.DIR_OUT);
-gpio.setup(fanPin, gpio.DIR_OUT);
-
+gpio.setup(fanPin, gpio.DIR_OUT, function(){
+	gpio.write(fanPin, false, function(err){
+		if(err) throw err;
+	});
+});
 
 console.log("Pin setup complete");
 
@@ -37,17 +40,10 @@ function setPin(pin, val, cb){
 	 	});
 
 	});
-	
-/*
-	gpio.open(pin, "output", function(err){
-		gpio.write(pin, val, function(){
-			gpio.close(pin);
-		});
-	});*/
-	//cb();
 }
 
-/*setStep(1, 0, 1, 0)
+/*	Adafruit Python stepper code reference
+	setStep(1, 0, 1, 0)
     time.sleep(delay)
     setStep(0, 1, 1, 0)
     time.sleep(delay)
@@ -55,10 +51,16 @@ function setPin(pin, val, cb){
     time.sleep(delay)
     setStep(1, 0, 0, 1)
     time.sleep(delay)
+
+	Random dude on the net on some forum reference..
+    Red=-+ve, Brown=-ve, Yellow=0, Orange=0
+	Red=0, Brown=0, Yellow=+ve, Orange=-ve
+	Red=--ve, Brown=+ve, Yellow=0, Orange=0
+	Red=0, Brown=0, Yellow=-ve, Orange=+ve
 */
 
 function setStep(_1a, _1b, _2a, _2b, delay, cb){
-	//var _cb = cb;
+
 	console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
 	
 	var ms = delay; 
