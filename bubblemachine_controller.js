@@ -68,24 +68,18 @@ function setStep(_1a, _1b, _2a, _2b, delay, cb){
 
 	async.series([
 		function(callback){
-			setTimeout(function(){
-				setPin(sc1A, _1a, callback);
-			}, ms);
+			setPin(sc1A, _1a, callback);
 		},
 		function(callback){
-			setTimeout(function(){
-				setPin(sc1B, _1b, callback);
-			}, ms);
+			setPin(sc1B, _1b, callback);
 		},
 		function(callback){
-			setTimeout(function(){
-				setPin(sc2A, _2a, callback);
-			}, ms);
+			setPin(sc2A, _2a, callback);
 		},
 		function(callback){
-			setTimeout(function(){
-				setPin(sc2B, _2b, callback);
-			}, ms);
+			setPin(sc2B, _2b, callback);
+		}function(callback){
+			setTimeout(callback, ms);
 		}], 
 		function(err, results){
 			cb();
@@ -108,19 +102,19 @@ function moveStepper(steps, callback){
 
 	var step_calls = [];
 	for (var i = 0; i < steps; i++) {
-		var ms = 100;
+		var ms = 25;
 		step_calls.push.apply(step_calls, [
 			function(callback){
-				setStep(1, 0, 1, 0, 0, callback);
+				setStep(1, 0, 1, 0, ms, callback);
 			},
 			function(callback){
-				setStep(0, 1, 1, 0, 0, callback);
+				setStep(0, 1, 1, 0, ms, callback);
 			},
 			function(callback){
-				setStep(0, 1, 0, 1, 0, callback);
+				setStep(0, 1, 0, 1, ms, callback);
 			},
 			function(callback){
-				setStep(1, 0, 0, 1, 0, callback);
+				setStep(1, 0, 0, 1, ms, callback);
 			}
 		]);
 	}
