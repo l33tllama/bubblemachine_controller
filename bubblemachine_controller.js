@@ -121,8 +121,6 @@ function moveStepper(steps, callback){
 			},
 			function(callback){
 				setStep(1, 0, 0, 1, 0, callback);
-			}, function(callback){
-				setTimeout(callback, ms)
 			}
 		]);
 	}
