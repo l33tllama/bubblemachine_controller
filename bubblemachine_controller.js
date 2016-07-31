@@ -38,7 +38,7 @@ function setPin(pin, val, cb){
 	        //console.log('Written to pin');
 			_cb();
 	 	});
-	 	
+
 	});
 	
 /*
@@ -63,6 +63,8 @@ function setPin(pin, val, cb){
 function setStep(_1a, _1b, _2a, _2b, delay, cb){
 	//var _cb = cb;
 	console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
+	
+	var ms = delay; 
 	
 	async.series([
 		function(callback){
