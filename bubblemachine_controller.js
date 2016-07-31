@@ -7,11 +7,15 @@ var sc2A = 7;
 var sc2B = 11;
 var fanPin = 13;
 
+console.log("Pin setup");
+
 gpio.setup(sc1A, gpio.DIR_OUT);
 gpio.setup(sc1B, gpio.DIR_OUT);
 gpio.setup(sc2A, gpio.DIR_OUT);
 gpio.setup(sc2B, gpio.DIR_OUT);
 gpio.setup(fanPin, gpio.DIR_OUT, function(err){if(err) throw err; console.log("Pin 13 set up!");});
+
+console.log("Pin setup complete");
 
 function setPin(pin, val, cb){
 	var _cb = cb; 
