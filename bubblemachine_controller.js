@@ -16,6 +16,10 @@ function closePins() {
 }
 closePins();
 
+gpio.on('export', function(channel) {
+    console.log('Channel set: ' + channel);
+});
+
 gpio.setup(sc1A, gpio.DIR_OUT);
 gpio.setup(sc1B, gpio.DIR_OUT);
 gpio.setup(sc2A, gpio.DIR_OUT);
