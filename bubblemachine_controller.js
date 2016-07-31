@@ -78,7 +78,7 @@ function setStep(_1a, _1b, _2a, _2b, delay, cb){
 		},
 		function(callback){
 			setPin(sc2B, _2b, callback);
-		}function(callback){
+		},function(callback){
 			setTimeout(callback, ms);
 		}], 
 		function(err, results){
