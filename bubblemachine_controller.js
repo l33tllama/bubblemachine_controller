@@ -32,7 +32,7 @@ function setPin(pin, val, cb){
 	var _cb = cb;
 	gpio.setup(pin, gpio.DIR_OUT, function(){
 
-		gpio.write(pin, true, function(err) {
+		gpio.write(pin, val, function(err) {
 			//console.log("---- Pin " + pin + ": " + val);
         	if (err) throw err;
 	        //console.log('Written to pin');
@@ -117,7 +117,7 @@ var MachineController = {
 	emit : function(qty, callback){
 		async.series([
 			function(callback){
-				setPin(fanPin, false, callback);
+				setPin(fanPin, true, callback);
 			},
 			function(callback){
 				moveStepper(qty, callback);
