@@ -42,15 +42,34 @@ function setPin(pin, val, cb){
 */
 
 function setStep(_1a, _1b, _2a, _2b, delay, cb){
-	var _cb = cb;
+	//var _cb = cb;
+	console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
 	
 	async.series([
-		function(cb){
+		function(callback){
 			setTimeout(function(){
-				setPin(sc1A, _1a, cb);
+				setPin(sc1A, _1a, callback);
 			}, ms);
-		}], function(err, results){
-	});
+		},
+		function(callback){
+			setTimeout(function(){
+				setPin(sc1B, _1b, callback);
+			}, ms);
+		},
+		function(callback){
+			setTimeout(function(){
+				setPin(sc2A, _2a, callback);
+			}, ms);
+		},
+		function(callback){
+			setTimeout(function(){
+				setPin(sc2B, _2b, callback);
+			}, ms);
+		}], 
+		function(err, results){
+			cb();
+		}
+	);
 /*
 	setTimeout(function(){
 		setPin(sc1A, _1a);
