@@ -20,11 +20,7 @@ gpio.on('export', function(channel) {
     console.log('Channel set: ' + channel);
 });
 
-gpio.setup(sc1A, gpio.DIR_OUT);
-gpio.setup(sc1B, gpio.DIR_OUT);
-gpio.setup(sc2A, gpio.DIR_OUT);
-gpio.setup(sc2B, gpio.DIR_OUT);
-gpio.setup(fanPin, gpio.DIR_OUT);
+
 
 console.log("Pin setup complete");
 
@@ -115,6 +111,12 @@ function moveStepper(steps, callback){
 
 var MachineController = {
 	emit : function(qty, callback){
+		gpio.setup(sc1A, gpio.DIR_OUT);
+		gpio.setup(sc1B, gpio.DIR_OUT);
+		gpio.setup(sc2A, gpio.DIR_OUT);
+		gpio.setup(sc2B, gpio.DIR_OUT);
+		gpio.setup(fanPin, gpio.DIR_OUT);
+		
 		async.series([
 			function(callback){
 				setPin(fanPin, true, callback);
