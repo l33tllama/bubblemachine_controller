@@ -111,6 +111,9 @@ function moveStepper(steps, callback){
 		var ms = 100;
 		step_calls.push.apply(step_calls, [
 			function(callback){
+				setStep(1, 0, 1, 0, 0, callback);
+			},
+			function(callback){
 				setStep(0, 1, 1, 0, 0, callback);
 			},
 			function(callback){
@@ -118,9 +121,6 @@ function moveStepper(steps, callback){
 			},
 			function(callback){
 				setStep(1, 0, 0, 1, 0, callback);
-			},
-			function(callback){
-				setStep(1, 0, 1, 0, 0, callback);
 			}, function(callback){
 				setTimeout(callback, ms)
 			}
