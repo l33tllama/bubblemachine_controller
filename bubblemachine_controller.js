@@ -11,7 +11,7 @@ gpio.setup(sc1A, gpio.DIR_OUT);
 gpio.setup(sc1B, gpio.DIR_OUT);
 gpio.setup(sc2A, gpio.DIR_OUT);
 gpio.setup(sc2B, gpio.DIR_OUT);
-gpio.setup(fanPin, gpio.DIR_OUT, function(err){if err throw err; console.log("Pin 13 set up!");});
+gpio.setup(fanPin, gpio.DIR_OUT, function(err){if(err) throw err; console.log("Pin 13 set up!");});
 
 function setPin(pin, val, cb){
 	var _cb = cb; 
