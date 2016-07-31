@@ -117,13 +117,13 @@ var MachineController = {
 	emit : function(qty, callback){
 		async.series([
 			function(callback){
-				setPin(fanPin, 1, callback);
+				setPin(fanPin, false, callback);
 			},
 			function(callback){
 				moveStepper(qty, callback);
 			},
 			function(callback){
-				setPin(fanPin, 0, callback);
+				setPin(fanPin, false, callback);
 			}], function(err, results){
 				if(err) throw err;
 				callback();
@@ -131,7 +131,7 @@ var MachineController = {
 		);
 	},
 	off : function(){
-		setPin(fanPin, 0, function(){
+		setPin(fanPin, false, function(){
 			console.log("Fan off..");
 		});
 	}
