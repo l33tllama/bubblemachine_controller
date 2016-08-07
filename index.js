@@ -15,7 +15,9 @@ var ready = true;
 var connected = false;
 
 function updateStatus(){
-	console.log("Machine ready emit: " + ready);
+	if(ready){
+		console.log("Machine ready emit: " + ready);
+	}
 	socket.emit('machine-status', ready);
 	setTimeout(updateStatus, 1000);
 }

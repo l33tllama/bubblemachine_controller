@@ -6,6 +6,9 @@ var sc1B = 5;
 var sc2A = 7;
 var sc2B = 11;
 var fanPin = 13;
+var rLEDPin = 15;
+var gLEDPin = 16;
+var bLEDPin = 18;
 
 console.log("Pin setup");
 
@@ -61,7 +64,7 @@ function setPin(pin, val, cb){
 
 function setStep(_1a, _1b, _2a, _2b, delay, cb){
 
-	console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
+	//console.log('step: ' + _1a + ' ' + _1b + ' '+ _2a + ' ' + _2b);
 	
 	var ms = delay; 
 
@@ -90,7 +93,7 @@ function moveStepper(steps, callback){
 
 	var step_calls = [];
 	for (var i = 0; i < steps; i++) {
-		var ms = 25;
+		var ms = 2;
 		step_calls.push.apply(step_calls, [
 			function(callback){
 				setStep(1, 0, 1, 0, ms, callback);
