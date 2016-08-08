@@ -13,6 +13,9 @@ var bm = require('./bubblemachine_controller');
 var serverAck = false;
 var ready = true;
 var connected = false;
+bm.setRGBLED(0,0,1, function(){
+	console.log("LED set!");
+});
 
 function updateStatus(){
 	if(ready){

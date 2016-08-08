@@ -38,11 +38,41 @@ function setPin(pin, val, cb){
 		gpio.write(pin, val, function(err) {
 			//console.log("---- Pin " + pin + ": " + val);
         	if (err) throw err;
-	        //console.log('Written to pin');
-			cb();
+	        if(cb){
+	        	cb();	
+	        }
+			
 	 	});
 
 	});
+}
+
+function setRed(r, cb){
+	if(r){
+		setPin(rLEDPin, 1, cb);
+	} else {
+		setPin(rLEDPin, 0, cb);
+	}
+}
+
+function setGreen(g, cb){
+	if(g){
+		setPin(gLEDPin, 1, cb);
+	} else {
+		setPin(gLEDPin, 0, cb);
+	}
+}
+
+function setBlue(b, cb){
+	if(b){
+		setPin(bLEDPin, 1, cb);
+	} else {
+		setPin(bLEDPin, 0, cb);
+	}
+}
+
+function _setRGBLED(r, g, b, cb){
+	setRed(r,setGreen(g, setBlue(b, cb)));
 }
 
 /*	Adafruit Python stepper code reference
@@ -142,7 +172,8 @@ var MachineController = {
 			});
 			
 		});
-	}
+	},
+	setRGBLED : _setRGBLED
 }
 
 module.exports = MachineController;
