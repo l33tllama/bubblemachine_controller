@@ -148,7 +148,6 @@ function moveStepper(steps, callback){
 var MachineController = {
 	emit : function(qty, callback){
 		
-		
 		async.series([
 			function(callback){
 				setPin(fanPin, true, callback);
