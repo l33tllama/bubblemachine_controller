@@ -59,7 +59,7 @@ socket.on('connect',function(){
     socket.emit('machine-status', true);
 });
 
-function blowBubbles(amt){
+function blowBubbles(data, amt){
 	bm.emit(data, function(){
 		ready = true;
 		socket.emit('machine-status', ready);
@@ -74,21 +74,21 @@ socket.on('bubble-request', function(data){
 		var rating = getQualityRating(data.pm_2_5);
 		switch(rating){
 			case 0:
-				bm.setRGBLED(0, 1, 0, blowBubbles(5 - rating));
+				bm.setRGBLED(0, 1, 0, blowBubbles(data, 5 - rating));
 				break
 			case 1:
-				bm.setRGBLED(1, 1, 0, blowBubbles(5 - rating));
+				bm.setRGBLED(1, 1, 0, blowBubbles(data, 5 - rating));
 				break;
 			case 2:
-				bm.setRGBLED(1, 0, 0, blowBubbles(5 - rating));
+				bm.setRGBLED(1, 0, 0, blowBubbles(data, 5 - rating));
 				break;
 			case 3:
 			case 4:
 			case 5:
-				bm.setRGBLED(1, 0, 0, blowBubbles(5 - rating));
+				bm.setRGBLED(1, 0, 0, blowBubbles(data, 5 - rating));
 				break;
 			default:
-				bm.setRGBLED(0,0,1, blowBubbles(5 - rating));
+				bm.setRGBLED(0,0,1, blowBubbles(data, 5 - rating));
 				break;
 		}
 	}
