@@ -60,7 +60,7 @@ socket.on('connect',function(){
 });
 
 function blowBubbles(data, amt){
-	bm.emit(data, function(){
+	bm.emit(amt * 20, function(){
 		bm.allOff();
 		ready = true;
 		socket.emit('machine-status', ready);
