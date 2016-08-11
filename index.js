@@ -19,7 +19,7 @@ var connected = false;
 // https://www.airnow.gov/
 function getQualityRating(ppm){
 	// healthy, no risk
-	if(ppm > 0 & ppm < 50){
+	if(ppm > -100 & ppm < 50){
 		return 0;
 	} // only harmfult to small number of people 
 	else if (ppm > 51 && ppm < 100){
@@ -48,7 +48,7 @@ function updateStatus(){
 		console.log("Machine ready emit: " + ready);
 	}
 	socket.emit('machine-status', ready);
-	setTimeout(updateStatus, 1000);
+	setTimeout(updateStatus, 10000);
 }
 
 setTimeout(updateStatus, 10000);
