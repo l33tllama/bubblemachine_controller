@@ -172,7 +172,7 @@ var MachineController = {
 			
 		});
 	},
-	setRGBLED : _setRGBLED
+	setRGBLED : _setRGBLED,
 	allOff : closePins
 }
 
