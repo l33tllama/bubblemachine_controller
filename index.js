@@ -7,7 +7,7 @@ socketOptions = {
     "connect timeout" : 1000
 };
 
-var serverUrl = 'http://localhost:8080';
+var serverUrl = 'http://138.68.31.203';
 
 var socket = require('socket.io-client')(serverUrl);
 var bm = require('./bubblemachine_controller');
