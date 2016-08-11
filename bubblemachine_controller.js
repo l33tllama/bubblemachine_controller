@@ -173,6 +173,7 @@ var MachineController = {
 		});
 	},
 	setRGBLED : _setRGBLED
+	allOff : closePins
 }
 
 module.exports = MachineController;
