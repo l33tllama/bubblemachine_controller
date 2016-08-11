@@ -51,7 +51,7 @@ function updateStatus(){
 	setTimeout(updateStatus, 1000);
 }
 
-setTimeout(updateStatus, 1000);
+setTimeout(updateStatus, 10000);
 
 socket.on('connect',function(){                                
     connected = true;
@@ -67,6 +67,7 @@ function blowBubbles(data, amt){
 }
 
 socket.on('bubble-request', function(data){
+	console.log("Requesting to blow bubbles..");
 	if(ready){
 		ready = false;
 		socket.emit('machine-status', ready);
