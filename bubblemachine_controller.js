@@ -34,7 +34,7 @@ gpio.setup(fanPin, gpio.DIR_OUT, function(){
 gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
 
 gpio.on('change', function(channel, value){
-	console.log("channel : " + channel + "is " + val){
+	console.log("channel : " + channel + "is " + val);
 		if(channel == btnPin && val > 0){
 			MachineController.emit(50, function(){
 				console.log("done..");
