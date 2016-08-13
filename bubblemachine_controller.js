@@ -40,7 +40,7 @@ gpio.on('change', function(channel, value){
 	} else {
 		if(channel == btnPin && value > 0){
 			_setRGBLED(0, 1, 0, function(){
-				MachineController.emit(50, function(){
+				MachineController.emit(100, function(){
 					_setRGBLED(0, 0, 0, function(){
 						console.log("done..");
 					});
