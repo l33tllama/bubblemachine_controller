@@ -9,6 +9,7 @@ var fanPin = 13;
 var rLEDPin = 15;
 var gLEDPin = 16;
 var bLEDPin = 18;
+var btnPin = 22;
 
 console.log("Pin setup");
 
@@ -28,6 +29,21 @@ gpio.setup(fanPin, gpio.DIR_OUT, function(){
 		if(err) throw err;
 	});
 });
+
+// button press
+gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
+
+gpio.on('change', function(channel, value){
+	console.log("channel : " + channel + "is " + val){
+		if(channel == btnPin && val > 0){
+			MachineController.emit(50, function(){
+				console.log("done..");
+			})
+		}
+	}
+});
+
+
 
 console.log("Pin setup complete");
 
@@ -156,7 +172,7 @@ var MachineController = {
 				moveStepper(qty, callback);
 			},
 			function(callback){
-				setPin(fanPin, false, callback);
+				setPin(fanPin, 0, callback);
 			}], function(err, results){
 				if(err) throw err;
 				callback();
@@ -164,11 +180,14 @@ var MachineController = {
 		);
 	},
 	off : function(){
-		setPin(fanPin, false, function(){
+		setPin(fanPin, 0, function(){
 			console.log("Fan off..?");
+
 			gpio.destroy(function(){
 				console.log("Everything off");
 			});
+			//resume btn pin
+			gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
 			
 		});
 	},
