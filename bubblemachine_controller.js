@@ -39,9 +39,13 @@ gpio.on('change', function(channel, value){
 		gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
 	} else {
 		if(channel == btnPin && value > 0){
-			MachineController.emit(50, function(){
-				console.log("done..");
-			})
+			_setRGBLED(0, 1, 0, function(){
+				MachineController.emit(50, function(){
+					_setRGBLED(0, 0, 0, function(){
+						console.log("done..");
+					});
+				})
+			})	
 		}
 	}
 	
