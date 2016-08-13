@@ -35,11 +35,16 @@ gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
 
 gpio.on('change', function(channel, value){
 	console.log("channel : " + channel + "is " + value);
-	if(channel == btnPin && value > 0){
-		MachineController.emit(50, function(){
-			console.log("done..");
-		})
+	if(!(channel && value)){
+		gpio.setup(btnPin, gpio.DIR_IN, gpio.EDGE_RISING);
+	} else {
+		if(channel == btnPin && value > 0){
+			MachineController.emit(50, function(){
+				console.log("done..");
+			})
+		}
 	}
+	
 });
 
 
